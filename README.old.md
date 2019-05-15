@@ -31,4 +31,4 @@ The technical challenges we expeirenced to build the front-end were:
 
 <h2>Improvements</h2>
 
-<p> The project had a deadline of six days to build. If granted more time, we would build out react routes to navigate the website, add web tokens for user authorization and building out site functionality such as a user dashboard to upload resume, application notes and total applied jobs.</p>
+<p> The project deadline was six days to build. If allowed more time, we would build out react routes to navigate the website, add web tokens for user authorization and build out site functionality such as a user dashboard to upload resume, application notes and total applied jobs. Regarding UX/UI, we would update the form to post in descending order to render the most recently added jobs first, add date to track application timing, and a contacted field noting if the employer has reached out. </p>
