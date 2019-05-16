@@ -4,8 +4,13 @@ import CreateForm from './components/CreateForm'
 import NavBar from './components/NavBar'
 import Show from './components/Show'
 import 'materialize-css/dist/css/materialize.min.css'
-import M from 'materialize-css/dist/js/materialize.min.js'
+import './App.css'
+
+
+// import M from 'materialize-css/dist/js/materialize.min.js'
 import { Row, Col } from 'react-materialize';
+
+
 
 
 // import { BrowserRouter as Router, Route, Link } from "react-router-dom"
@@ -213,12 +218,16 @@ class App extends React.Component {
 
         <div >
 
-          <NavBar className="orange" />
+          <NavBar handleLogout = {this.handleLogout} />
 
-          <div className="container">
-            <button onClick={this.handleLogout}>Log Out</button>
-            <h1>Welcome {this.state.username}!</h1>
-            <h4 className="orange lighten-2 center white-text">Add jobs</h4>
+          <div className="container ">
+
+            <h2>Welcome, {this.state.username}!</h2>
+
+            <div className="grey lighten-4">
+
+            <h4 className=" green accent-4
+ center white-text">Add jobs</h4>
             { /* logout goes here */}
 
             <CreateForm
@@ -226,10 +235,12 @@ class App extends React.Component {
               baseURL={baseURL}
               username={this.state.username}
             />
+            </div>
             <Row>
               <Col s={9}>
-                <div className="grey lighten-5">
-                  <h4 className="orange lighten-2 center white-text">Jobs Inbox</h4>
+                {/* <div className="grey lighten-5"> */}
+                  <h4 className="green accent-4
+ center white-text center white-text">Jobs Inbox</h4>
                    <table>
                     <tbody>
                       {this.state.jobs.map(jobs => {
@@ -238,31 +249,34 @@ class App extends React.Component {
                           // SHOW ROUTE IN TABLE
                           <tr
                             key={jobs._id}
-                            onMouseOver={() => this.getSingleJob(jobs)}
-                          >
+                            onClick={() => this.getSingleJob(jobs)}
+                          >  
+                            <td> {jobs.agency}</td>
                             <td> {jobs.business_title}</td>
-                            <td> {jobs.url}</td>
-
                             {/* END OF SHOW ROUTE */}
-                            <td onClick={() => this.deleteJob(jobs._id)}>
-                              &times;
-                      </td>
-                            <td>
+                            <button className= { jobs.applied ? "btn disabled" : "btn green accent-4" } onClick={() => this.toggleApplied(jobs)}>
+                              {(jobs.applied) ? 
+                              "Applied"
+                              :
+                              "Apply"}
+                              {/* Applied */}
+                      </button>
+                            {/* <td>
                               {(jobs.applied)
                                 ? "applied"
                                 : "not applied"}
-                            </td>
-                            <button className="floating orange white-text" onClick={() => this.toggleApplied(jobs)}>
-                              Applied
-                      </button>
+                            </td> */}
+                            <td onClick={() => this.deleteJob(jobs._id)}>
+                              &times;
+                      </td>
                           </tr>
                         )
                       })
                       }
                     </tbody>
                   </table>
+                {/* </div> */}
 
-                </div>
               </Col>
               <Col s={3} >
                 {(this.state.job)
@@ -279,8 +293,8 @@ class App extends React.Component {
         <>
           <Authorization
             handleSubmit={this.handleSubmit}
+            resMessage={this.state.resMessage}
           />
-          <div>{this.state.resMessage}</div>
         </>
       )
     }
